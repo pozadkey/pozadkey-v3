@@ -33,14 +33,15 @@ class AppIcons {
   static const String x = 'assets/icons/ic_x.svg';
   static const String linkedIn = 'assets/icons/ic_linkedin.svg';
   static const String github = 'assets/icons/ic_github.svg';
+  static const String message = 'assets/icons/ic_message.svg';
 
-  // Bills
-  static const String flight = 'assets/icons/ic_flight.svg';
-  static const String education = 'assets/icons/ic_education.svg';
-  static const String electricity = 'assets/icons/ic_electricity.svg';
-  static const String tv = 'assets/icons/ic_tv.svg';
-  static const String internet = 'assets/icons/ic_internet.svg';
-  static const String phone = 'assets/icons/ic_phone.svg';
+  // // Bills
+  // static const String flight = 'assets/icons/ic_flight.svg';
+  // static const String education = 'assets/icons/ic_education.svg';
+  // static const String electricity = 'assets/icons/ic_electricity.svg';
+  // static const String tv = 'assets/icons/ic_tv.svg';
+  // static const String internet = 'assets/icons/ic_internet.svg';
+  // static const String phone = 'assets/icons/ic_phone.svg';
 
   //  Profile Icons
   static const String terms = 'assets/icons/ic_terms.svg';

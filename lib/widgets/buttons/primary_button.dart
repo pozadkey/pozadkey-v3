@@ -45,20 +45,18 @@ class _PrimaryButtonState extends State<PrimaryButton> {
       fontSize: widget.textSize ?? 14,
       color: widget.textColor ?? PrimaryButtonColors.textColor,
       fontFamily: 'ClashDisplay',
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
     );
 
     return MouseRegion(
       onEnter: (m) {
         setState(() {
           widget.textColor = const Color(0xFFFFFFFF);
-         
         });
       },
       onExit: (m) {
         setState(() {
           widget.textColor = const Color(0xCCB5B5B5);
-        
         });
       },
       child: SizedBox(

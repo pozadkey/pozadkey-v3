@@ -31,43 +31,43 @@ class _FooterDesktopState extends State<FooterDesktop> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconRounded(
-                icon: AppIcons.github,
-                onPressed: () {
-                  launchURL(AppUri.github);
-                },
-              ),
-              SizedBox(width: 10),
-              IconRounded(
-                icon: AppIcons.linkedIn,
-                onPressed: () {
-                  launchURL(AppUri.linkedIn);
-                },
-              ),
-              SizedBox(width: 10),
-              IconRounded(
-                icon: AppIcons.x,
-                onPressed: () {
-                  launchURL(AppUri.x);
-                },
-              ),
-              SizedBox(width: 10),
-              IconRounded(
-                icon: AppIcons.whatsapp,
-                onPressed: () {
-                  launchURL(AppUri.whatsapp);
-                },
-              ),
-            ],
-          ),
-          SizedBox(height: 20),
+          // Row(
+          //   crossAxisAlignment: CrossAxisAlignment.center,
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     IconRounded(
+          //       icon: AppIcons.github,
+          //       onPressed: () {
+          //         launchURL(AppUri.github);
+          //       },
+          //     ),
+          //     SizedBox(width: 10),
+          //     IconRounded(
+          //       icon: AppIcons.linkedIn,
+          //       onPressed: () {
+          //         launchURL(AppUri.linkedIn);
+          //       },
+          //     ),
+          //     SizedBox(width: 10),
+          //     IconRounded(
+          //       icon: AppIcons.x,
+          //       onPressed: () {
+          //         launchURL(AppUri.x);
+          //       },
+          //     ),
+          //     SizedBox(width: 10),
+          //     IconRounded(
+          //       icon: AppIcons.whatsapp,
+          //       onPressed: () {
+          //         launchURL(AppUri.whatsapp);
+          //       },
+          //     ),
+          //   ],
+          // ),
+          // SizedBox(height: 20),
           FooterItems(
               onPressed: () {},
-              title: '© $formattedDate. Damilare Ajakaiye.',
+              title: 'Damilare Ajakaiye | Copyright © $formattedDate',
               initialColor: GeneralColors.linkHoverText,
               hoverColorIn: GeneralColors.linkHoverIn,
               hoverColorOut: GeneralColors.linkHoverText),

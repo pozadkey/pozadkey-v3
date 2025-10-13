@@ -2,20 +2,18 @@ import 'package:flutter/material.dart';
 
 class Responsive extends StatelessWidget {
   final Widget child;
-  const Responsive({
-    Key? key,
-    required this.child,
-  }) : super(key: key);
+  final BoxConstraints? constraints;
+  const Responsive({super.key, required this.child, this.constraints});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      // Constraint widgets to maximum width
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(
-          maxWidth: 1200,
+    return Container(
+      color: Colors.transparent,
+      child: Center(
+        child: ConstrainedBox(
+          constraints: constraints ?? const BoxConstraints(maxWidth: 900),
+          child: Padding(padding: const EdgeInsets.all(15.0), child: child),
         ),
-        child: child,
       ),
     );
   }

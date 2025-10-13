@@ -7,97 +7,140 @@ import 'package:pozadkey_v3/widgets/image_loader.dart';
 
 class Desktop extends StatefulWidget {
   const Desktop({super.key});
-
   @override
   State<Desktop> createState() => _DesktopState();
 }
 
 class _DesktopState extends State<Desktop> {
+  int hoveredIndex = -1;
+
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    final headerFont =
-        Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 40);
-    final intoFont = Theme.of(context).textTheme.displayMedium;
-    final stackFont = Theme.of(context).textTheme.displaySmall;
+    final width = MediaQuery.of(context).size.width;
+    final titleFont =
+        Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 24);
+    final infoFont = Theme.of(context).textTheme.displayMedium;
+
     return SizedBox(
-      width: 1200,
       child: GridView.builder(
+        padding: EdgeInsets.zero, // REMOVE extra GridView padding
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 570, // Max width for each grid item
-          crossAxisSpacing: 10, // Horizontal spacing
-          mainAxisSpacing: 10, // Vertical spacing
-          childAspectRatio:
-              width <= 980 ? 5 / 4 : 5 / 4.4, // Aspect ratio for grid items
+          maxCrossAxisExtent: 570,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+          childAspectRatio: width <= 980 ? 5 / 4 : 5.3 / 4.4,
         ),
         itemCount: toolProjectsList.length,
-        shrinkWrap: true, // Ensures GridView takes only required space
-        physics:
-            const NeverScrollableScrollPhysics(), // Prevent internal scroll
-        itemBuilder: (BuildContext context, int index) {
-          final tools = toolProjectsList[index];
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-            ImageLoader(
-                  imagePath: tools.image,
-                  title: tools.title,
-                ),
-              // Text Below the Container
-              const SizedBox(height: 8), // Space between container and text
-              Text(
-                tools.title,
-                style: headerFont.copyWith(fontSize: 18),
-                textAlign: TextAlign.start,
-              ),
-              const SizedBox(height: 5),
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, i) {
+          final t = toolProjectsList[i];
+          final hasImage = t.image.isNotEmpty;
+          final isHovered = hoveredIndex == i;
 
-              Text(
-                tools.info,
-                style: intoFont,
-                textAlign: TextAlign.start,
+          return MouseRegion(
+            onEnter: (_) => setState(() => hoveredIndex = i),
+            onExit: (_) => setState(() => hoveredIndex = -1),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 240),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(3),
+                gradient: LinearGradient(
+                  colors: isHovered
+                      ? [Colors.grey.shade900, Colors.black]
+                      : [Colors.grey.shade900, Colors.grey.shade900],
+                ),
+                border: Border.all(
+                    color: isHovered
+                        ? Colors.grey.shade700
+                        : Colors.grey.shade900),
+                boxShadow: isHovered
+                    ? [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.35),
+                            blurRadius: 18,
+                            offset: const Offset(0, 8))
+                      ]
+                    : [],
               ),
-              const SizedBox(height: 5),
-              FittedBox(
-                child: Row(
-                  children: tools.stack
-                      .map((tech) => Container(
-                          padding: const EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                              color: const Color.fromRGBO(43, 43, 43, 1),
-                              borderRadius: BorderRadius.circular(2.0)),
-                          child: Text(
-                            tech,
-                            style: stackFont,
-                          )))
-                      .expand((widget) => [
-                            widget,
-                            const SizedBox(width: 10),
-                          ])
-                      .toList(),
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min, // important!
+                  children: [
+                    // IMAGE OR PLACEHOLDER
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(3),
+                      child: SizedBox(
+                        height: 175,
+                        width: double.infinity,
+                        child: hasImage
+                            ? Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  ImageLoader(
+                                      imagePath: t.image, title: t.title),
+                                  if (isHovered)
+                                    AnimatedOpacity(
+                                      opacity: 0.18,
+                                      duration:
+                                          const Duration(milliseconds: 180),
+                                      child: Container(color: Colors.black),
+                                    ),
+                                ],
+                              )
+                            : Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(colors: [
+                                    Colors.blueGrey.shade700,
+                                    Colors.blueGrey.shade900
+                                  ]),
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  t.title,
+                                  style:
+                                      titleFont.copyWith(color: Colors.white70),
+                                  textAlign: TextAlign.center,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    Text(
+                      t.info,
+                      style: infoFont,
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    Row(
+                      children: [
+                        if (t.live.isNotEmpty)
+                          IconRounded(
+                            icon: AppIcons.arrowRightTop,
+                            onPressed: () => launchURL(t.live),
+                          ),
+                        const SizedBox(width: 8),
+                        if (t.github.isNotEmpty)
+                          IconRounded(
+                            icon: AppIcons.github,
+                            onPressed: () => launchURL(t.github),
+                          ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 8),
-              Row(
-                children: [
-                  if (tools.live != '')
-                    IconRounded(
-                      icon: AppIcons.arrowRightTop,
-                      onPressed: () {
-                         launchURL(tools.live);
-                      },
-                    ),
-                  const SizedBox(width: 5),
-                  if (tools.github != '')
-                    IconRounded(
-                      icon: AppIcons.github,
-                      onPressed: () {
-                        launchURL(tools.github);
-                      },
-                    ),
-                ],
-              ),
-            ],
+            ),
           );
         },
       ),

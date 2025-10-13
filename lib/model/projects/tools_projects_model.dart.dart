@@ -23,4 +23,20 @@ List<ToolProjectsModel> toolProjectsList = [
       stack: ['Dart', 'Flutter'],
       live: 'http://pub.dev/packages/quick_button',
       github: 'https://github.com/pozadkey/quick_button'),
+  ToolProjectsModel(
+      title: 'Quick Button Second',
+      image: '',
+      info:
+          'A Flutter package that provides multiple customizable buttons for quick use. A Flutter package that provides multiple customizable buttons for quick use. ',
+      stack: ['Dart', 'Flutter'],
+      live: 'http://pub.dev/packages/quick_button',
+      github: 'https://github.com/pozadkey/quick_button'),
+  ToolProjectsModel(
+      title: 'Quick Button Third',
+      image: '',
+      info:
+          'A Flutter package that provides multiple customizable buttons for quick use',
+      stack: ['Dart', 'Flutter'],
+      live: 'http://pub.dev/packages/quick_button',
+      github: 'https://github.com/pozadkey/quick_button'),
 ];

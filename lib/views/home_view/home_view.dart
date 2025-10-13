@@ -35,20 +35,20 @@ class _HomeViewState extends State<HomeView> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                NavBar(
-                                  projectsKey: projectsKey,
-                                ),
-                                Intro(
-                                  projectsKey: projectsKey,
-                                ),
-                                SizedBox(height: 60),
+                                // NavBar(
+                                //   projectsKey: projectsKey,
+                                // ),
+                                // Intro(
+                                //   projectsKey: projectsKey,
+                                // ),
+                                // SizedBox(height: 60),
                                 Projects(key: projectsKey),
-                                SizedBox(height: 60),
-                                About(),
-                                SizedBox(height: 60),
-                                Contact(),
-                                SizedBox(height: 30),
-                                Footer()
+                                // SizedBox(height: 60),
+                                // // About(),
+                                // SizedBox(height: 60),
+                                // Contact(),
+                                // // SizedBox(height: 30),
+                                // Footer()
                               ],
                             ),
                           ),

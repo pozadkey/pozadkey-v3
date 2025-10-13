@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart'; // Riverpod for state management
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pozadkey_v3/views/sections/projects/sections/articles/articles.dart';
 import 'package:pozadkey_v3/views/sections/projects/sections/mobile/mobile_projs.dart';
 import 'package:pozadkey_v3/views/sections/projects/sections/tools/tools.dart';
 import 'package:pozadkey_v3/views/sections/projects/sections/web/web.dart';
 import 'package:pozadkey_v3/widgets/tab/tab.dart';
-// For launching URLs
-// Local imports
 import 'package:pozadkey_v3/responsive/responsive.dart';
 import 'package:pozadkey_v3/utils/constants/colors.dart';
 
@@ -24,118 +22,81 @@ class Desktop extends ConsumerStatefulWidget {
 class _DesktopState extends ConsumerState<Desktop> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    // Define the header font style
     final headerFont =
         Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 40);
 
     final index = ref.watch(projectIndex);
 
     return Responsive(
-      child: Container(
-        padding: width <= 1550
-            ? const EdgeInsets.fromLTRB(20, 0, 20, 0)
-            : const EdgeInsets.fromLTRB(100, 40, 100, 40),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Header Section
-            Text(
-              'Projects',
-              textAlign: TextAlign.left,
-              style: headerFont,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Selected Projects',
+            textAlign: TextAlign.left,
+            style: headerFont,
+          ),
+          const SizedBox(height: 15),
+          // Tabs Row
+          SizedBox(
+            child: Row(
+              children: [
+                _buildTab(context, ref, 'Web', const Web(), index, 0),
+                const SizedBox(width: 15),
+                _buildTab(context, ref, 'Mobile', const MobileProj(), index, 1),
+                const SizedBox(width: 15),
+                _buildTab(context, ref, 'Packages', const Tools(), index, 2),
+                const SizedBox(width: 15),
+                _buildTab(context, ref, 'Articles', const Articles(), index, 3),
+              ],
             ),
-            const SizedBox(height: 10),
-            SizedBox(
-              width: 1200,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TabItems(
-                    onPressed: () {
-                      ref.read(projectDisplayProvider.notifier).state =
-                          const Web();
-                      ref.read(projectIndex.notifier).state = 0;
-                    },
-                    title: 'Web',
-                    fontSize: 18,
-                    initialColor: index == 0
-                        ? GeneralColors.linkHoverIn
-                        : GeneralColors.linkHoverText,
-                    hoverColorIn: index == 0
-                        ? GeneralColors.linkHoverIn
-                        : GeneralColors.linkHoverIn,
-                    hoverColorOut: index == 0
-                        ? GeneralColors.linkHoverIn
-                        : GeneralColors.linkHoverText,
-                  ),
-                  const SizedBox(width: 15),
-                  TabItems(
-                    onPressed: () {
-                      ref.read(projectDisplayProvider.notifier).state =
-                          const MobileProj();
-                      ref.read(projectIndex.notifier).state = 1;
-                    },
-                    title: 'Mobile',
-                    fontSize: 18,
-                    initialColor: index == 1
-                        ? GeneralColors.linkHoverIn
-                        : GeneralColors.linkHoverText,
-                    hoverColorIn: index == 1
-                        ? GeneralColors.linkHoverIn
-                        : GeneralColors.linkHoverIn,
-                    hoverColorOut: index == 1
-                        ? GeneralColors.linkHoverIn
-                        : GeneralColors.linkHoverText,
-                  ),
-                  const SizedBox(width: 15),
-                  TabItems(
-                    onPressed: () {
-                      ref.read(projectDisplayProvider.notifier).state =
-                          const Tools();
-                      ref.read(projectIndex.notifier).state = 2;
-                    },
-                    title: 'Packages',
-                    fontSize: 18,
-                    initialColor: index == 2
-                        ? GeneralColors.linkHoverIn
-                        : GeneralColors.linkHoverText,
-                    hoverColorIn: index == 2
-                        ? GeneralColors.linkHoverIn
-                        : GeneralColors.linkHoverIn,
-                    hoverColorOut: index == 2
-                        ? GeneralColors.linkHoverIn
-                        : GeneralColors.linkHoverText,
-                  ),
-                  const SizedBox(width: 15),
-                  TabItems(
-                    onPressed: () {
-                      ref.read(projectDisplayProvider.notifier).state =
-                          const Articles();
-                      ref.read(projectIndex.notifier).state = 3;
-                    },
-                    title: 'Articles',
-                    fontSize: 18,
-                    initialColor: index == 3
-                        ? GeneralColors.linkHoverIn
-                        : GeneralColors.linkHoverText,
-                    hoverColorIn: index == 3
-                        ? GeneralColors.linkHoverIn
-                        : GeneralColors.linkHoverIn,
-                    hoverColorOut: index == 3
-                        ? GeneralColors.linkHoverIn
-                        : GeneralColors.linkHoverText,
-                  ),
-                  const SizedBox(width: 10),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            ref.watch(projectDisplayProvider),
-          ],
-        ),
+          ),
+          const SizedBox(height: 15),
+          Container(
+            // color: Colors.red,
+            child: ref.watch(projectDisplayProvider),
+          ),
+          // ref.watch(projectDisplayProvider),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTab(BuildContext context, WidgetRef ref, String title,
+      Widget view, int currentIndex, int tabIndex) {
+    final isActive = currentIndex == tabIndex;
+
+    return GestureDetector(
+      onTap: () {
+        ref.read(projectDisplayProvider.notifier).state = view;
+        ref.read(projectIndex.notifier).state = tabIndex;
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TabItems(
+            onPressed: () {
+              ref.read(projectDisplayProvider.notifier).state = view;
+              ref.read(projectIndex.notifier).state = tabIndex;
+            },
+            title: title,
+            fontSize: 18,
+            initialColor: isActive
+                ? GeneralColors.linkHoverIn
+                : GeneralColors.linkHoverText,
+            hoverColorIn: GeneralColors.linkHoverIn,
+            hoverColorOut: isActive
+                ? GeneralColors.linkHoverIn
+                : GeneralColors.linkHoverText,
+          ),
+          const SizedBox(height: 3),
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            height: 2,
+            width: isActive ? 24 : 0,
+            color: GeneralColors.linkHoverIn,
+          ),
+        ],
       ),
     );
   }
