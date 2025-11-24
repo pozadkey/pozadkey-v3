@@ -32,6 +32,14 @@ class _TabItemsState extends State<TabItems> {
   }
 
   @override
+  void didUpdateWidget(TabItems oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.initialColor != widget.initialColor) {
+      currentColor = widget.initialColor;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final navFont = Theme.of(context)
         .textTheme
