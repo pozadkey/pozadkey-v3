@@ -1,22 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:pozadkey_v3/utils/constants/colors.dart';
-import '../icons/icon_img.dart';
+import 'package:pozadkey_v3/shared/index.dart';
 
 class PrimaryButton extends StatefulWidget {
   final String? text;
   final Widget? textWidget;
-  Color? textColor;
+  final Color? textColor;
   final double? textSize;
   final double? radiusSize;
   final String? icon;
-  Color? bgColor;
+  final Color? bgColor;
   final double? buttonWidth;
   final VoidCallback? onPressed;
   final Color? borderColor;
   final double? verticalPadding;
   final double? horizontalPadding;
 
-  PrimaryButton({
+  const PrimaryButton({
     super.key,
     this.text,
     this.onPressed,
@@ -37,26 +35,34 @@ class PrimaryButton extends StatefulWidget {
 }
 
 class _PrimaryButtonState extends State<PrimaryButton> {
+  late Color currentTextColor;
+
+  @override
+  void initState() {
+    super.initState();
+    currentTextColor = widget.textColor ?? PrimaryButtonColors.textColor;
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
     final buttonFont = TextStyle(
       fontSize: widget.textSize ?? 14,
-      color: widget.textColor ?? PrimaryButtonColors.textColor,
-      fontFamily: 'ClashDisplay',
+      color: currentTextColor,
+      fontFamily: 'GeistMono',
       fontWeight: FontWeight.w600,
     );
 
     return MouseRegion(
       onEnter: (m) {
         setState(() {
-          widget.textColor = const Color(0xFFFFFFFF);
+          currentTextColor = const Color(0xFFFFFFFF);
         });
       },
       onExit: (m) {
         setState(() {
-          widget.textColor = const Color(0xCCB5B5B5);
+          currentTextColor = widget.textColor ?? PrimaryButtonColors.textColor;
         });
       },
       child: SizedBox(
@@ -67,7 +73,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
             minimumSize: Size(widget.buttonWidth ?? width / 2.5, 60),
             backgroundColor: widget.bgColor ?? PrimaryButtonColors.bgColor,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(widget.radiusSize ?? 30.0),
+              borderRadius: BorderRadius.circular(widget.radiusSize ?? 4.0),
             ),
             side: BorderSide(
               color: widget.borderColor ?? Colors.transparent,
@@ -84,7 +90,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
               if (widget.icon != null) ...[
                 IconImg(
                   icon: widget.icon!,
-                  iconColor: widget.textColor ?? PrimaryButtonColors.textColor,
+                  iconColor: currentTextColor,
                   height: 30,
                   width: 30,
                 ),

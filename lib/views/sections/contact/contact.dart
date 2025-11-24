@@ -1,14 +1,7 @@
-// ignore_for_file: prefer_const_constructors, must_be_immutable
-
-import 'package:flutter/material.dart';
-import 'package:pozadkey_v3/responsive/responsive.dart';
-import 'package:pozadkey_v3/views/sections/contact/desktop.dart';
-import 'package:pozadkey_v3/views/sections/contact/mobile.dart';
+import 'package:pozadkey_v3/shared/index.dart';
 
 class Contact extends StatefulWidget {
-  const Contact({
-    super.key,
-  });
+  const Contact({super.key});
 
   @override
   State<Contact> createState() => _ContactState();
@@ -17,15 +10,35 @@ class Contact extends StatefulWidget {
 class _ContactState extends State<Contact> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    final headerFont = AppFonts.subHeader(context);
+    final subHeaderFont = Theme.of(context).textTheme.titleMedium;
     return Responsive(
-      child: LayoutBuilder(builder: (context, constraints) {
-        if (width <= 1200) {
-          return Mobile();
-        } else {
-          return Desktop();
-        }
-      }),
+      child: SizedBox(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  AppText.contactHeader,
+                  textAlign: TextAlign.center,
+                  style: headerFont,
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  AppText.contactDescription,
+                  textAlign: TextAlign.left,
+                  style: subHeaderFont,
+                ),
+                const SizedBox(height: 20),
+                const SocialIconsRow(),
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 }

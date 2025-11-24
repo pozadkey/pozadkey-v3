@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-
+import 'package:pozadkey_v3/shared/index.dart';
 class AppColors {
   static Color selectedIcon =
-      const Color.fromARGB(255, 0, 88, 212).withOpacity(1);
+      const Color.fromARGB(255, 0, 88, 212).withValues(alpha: 1);
   static const Color unselectedIcon = Color(0xFF9E9E9E);
   static Color balanceColor =
-      const Color.fromARGB(255, 0, 88, 212).withOpacity(0.8);
-  static Color cardColor = const Color.fromARGB(255, 0, 88, 212).withOpacity(1);
+      const Color.fromARGB(255, 0, 88, 212).withValues(alpha: 0.8);
+  static Color cardColor =
+      const Color.fromARGB(255, 0, 88, 212).withValues(alpha: 1);
 }
 
 // General colors
@@ -19,18 +19,18 @@ class GeneralColors {
   static Color successTextColor = const Color.fromARGB(255, 75, 207, 104);
   static Color successIconColor = const Color(0xFF0058D4);
   static Color linkText =
-      const Color.fromARGB(255, 0, 88, 212).withOpacity(0.8);
+      const Color.fromARGB(255, 0, 88, 212).withValues(alpha: 0.8);
 }
 
 // Primary Button Colors
 class PrimaryButtonColors {
   static Color bgColor = const Color(0xCCCCCCCC);
-  static Color loadingBgColor = const Color(0xFF0058D4).withOpacity(0.4);
+  static Color loadingBgColor = const Color(0xFF0058D4).withValues(alpha: 0.4);
   static Color disabledBgColor = const Color.fromARGB(255, 50, 50, 50)
-      .withOpacity(0.3); // Background color
-  static Color textColor = const Color(0xFFFFFFFF); // Text color
+      .withValues(alpha: 0.3);
+  static Color textColor = const Color(0xFFFFFFFF);
   static Color disabledTextColor =
-      const Color(0xFFFFFFFF).withOpacity(0.5); // Text color
+      const Color(0xFFFFFFFF).withValues(alpha: 0.5);
 }
 
 // Onboarding  screen

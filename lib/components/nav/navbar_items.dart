@@ -1,57 +1,63 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, sized_box_for_whitespace, must_be_immutable, library_private_types_in_public_api
-
-import 'package:flutter/material.dart';
+import 'package:pozadkey_v3/shared/index.dart';
 
 class NavBarItems extends StatefulWidget {
-  String title;
-  double? fontSize;
-  Color initialColor;
-  Color hoverColorIn;
-  Color hoverColorOut;
-  final Function onPressed;
+  final String title;
+  final double? fontSize;
+  final Color initialColor;
+  final Color hoverColorIn;
+  final Color hoverColorOut;
+  final VoidCallback onPressed;
 
-  NavBarItems(
-      {super.key,
-      required this.onPressed,
-      required this.title,
-      this.fontSize,
-      required this.initialColor,
-      required this.hoverColorIn,
-      required this.hoverColorOut});
+  const NavBarItems({
+    super.key,
+    required this.onPressed,
+    required this.title,
+    this.fontSize,
+    required this.initialColor,
+    required this.hoverColorIn,
+    required this.hoverColorOut,
+  });
 
   @override
-  _NavBarItemsState createState() => _NavBarItemsState();
+  State<NavBarItems> createState() => _NavBarItemsState();
 }
 
 class _NavBarItemsState extends State<NavBarItems> {
+  late Color currentColor;
+
+  @override
+  void initState() {
+    super.initState();
+    currentColor = widget.initialColor;
+  }
+
   @override
   Widget build(BuildContext context) {
     final navFont = Theme.of(context)
         .textTheme
         .displaySmall!
-        .copyWith(color: widget.initialColor, fontSize: widget.fontSize ?? 14);
+        .copyWith(color: currentColor, fontSize: widget.fontSize ?? 14);
 
     return MouseRegion(
-        onEnter: (m) {
-          setState(() {
-            widget.initialColor = widget.hoverColorIn;
-          });
-        },
-        onExit: (m) {
-          setState(() {
-            widget.initialColor = widget.hoverColorOut;
-          });
-        },
-        child: MaterialButton(
-          padding: EdgeInsets.zero,
-          minWidth: 0,
-          onPressed: () {
-            widget.onPressed();
-          },
-          child: Text(
-            widget.title,
-            style: navFont,
-          ),
-        ));
+      onEnter: (_) {
+        setState(() {
+          currentColor = widget.hoverColorIn;
+        });
+      },
+      onExit: (_) {
+        setState(() {
+          currentColor = widget.hoverColorOut;
+        });
+      },
+      child: MaterialButton(
+        padding: EdgeInsets.zero,
+        minWidth: 0,
+        onPressed: widget.onPressed,
+        child: Text(
+          widget.title,
+          style: navFont,
+        ),
+      ),
+    );
   }
 }

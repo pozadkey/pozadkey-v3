@@ -1,5 +1,5 @@
 // Function to open URL
-import 'package:url_launcher/url_launcher.dart';
+import 'package:pozadkey_v3/shared/index.dart';
 
 Future<void> launchURL(String url) async {
   final Uri uri = Uri.parse(url);

@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pozadkey_v3/shared/index.dart';
 
 class IconImg extends StatefulWidget {
-  final Function()? onPressed;
+  final VoidCallback? onPressed;
   final String icon;
   final double? height;
   final double? width;

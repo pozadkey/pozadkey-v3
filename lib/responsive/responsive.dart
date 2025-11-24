@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:pozadkey_v3/shared/index.dart';
 
 class Responsive extends StatelessWidget {
   final Widget child;
@@ -12,7 +12,7 @@ class Responsive extends StatelessWidget {
       child: Center(
         child: ConstrainedBox(
           constraints: constraints ?? const BoxConstraints(maxWidth: 900),
-          child: Padding(padding: const EdgeInsets.all(15.0), child: child),
+          child: Padding(padding: const EdgeInsets.all(20.0), child: child),
         ),
       ),
     );

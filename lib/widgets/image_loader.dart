@@ -1,15 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:pozadkey_v3/utils/constants/colors.dart';
+import 'package:pozadkey_v3/shared/index.dart';
 
 class ImageLoader extends StatelessWidget {
   final String imagePath;
   final String title;
 
   const ImageLoader({
-    Key? key,
+    super.key,
     required this.imagePath,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +71,7 @@ class ImageLoader extends StatelessWidget {
           Shadow(
             offset: const Offset(0, 1),
             blurRadius: 5,
-            color: Colors.black.withOpacity(0.5),
+            color: Colors.black.withValues(alpha: 0.5),
           ),
         ],
       ),

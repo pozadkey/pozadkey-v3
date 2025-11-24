@@ -1,5 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:pozadkey_v3/shared/index.dart';
 
 ThemeData appTheme = ThemeData(
   brightness: Brightness.dark,
@@ -35,17 +34,17 @@ ThemeData appTheme = ThemeData(
   textTheme: const TextTheme(
     // Header text style
     displayLarge: TextStyle(
-        fontSize: 60,
+        fontSize: 45,
         color: Color(0xFFFFFFFF),
-        fontFamily: 'ClashDisplay',
+        fontFamily: 'GeistMono',
         fontWeight: FontWeight.w500,
         letterSpacing: 0.2),
     // Title text
     titleMedium: TextStyle(
-      fontSize: 18,
+      fontSize: 16,
       color: Color(0xFFA7A7A7),
       letterSpacing: 0.5,
-      fontFamily: 'ClashDisplay',
+      fontFamily: 'GeistMono',
       fontWeight: FontWeight.w400,
     ),
 
@@ -54,7 +53,7 @@ ThemeData appTheme = ThemeData(
       fontSize: 14,
       color: Color(0xFFA7A7A7),
       letterSpacing: 0.1,
-      fontFamily: 'ClashDisplay',
+      fontFamily: 'GeistMono',
       fontWeight: FontWeight.w400,
     ),
 
@@ -62,7 +61,7 @@ ThemeData appTheme = ThemeData(
     titleSmall: TextStyle(
       fontSize: 14,
       color: Color(0xFFA7A7A7),
-      fontFamily: 'ClashDisplay',
+      fontFamily: 'GeistMono',
       fontWeight: FontWeight.w500,
     ),
 
@@ -70,7 +69,7 @@ ThemeData appTheme = ThemeData(
       fontSize: 14,
       color: Color(0xFFA7A7A7),
       letterSpacing: 0.5,
-      fontFamily: 'ClashDisplay',
+      fontFamily: 'GeistMono',
       fontWeight: FontWeight.w400,
     ),
 
@@ -78,7 +77,7 @@ ThemeData appTheme = ThemeData(
     labelSmall: TextStyle(
       fontSize: 14,
       color: Color(0xFFA7A7A7),
-      fontFamily: 'ClashDisplay',
+      fontFamily: 'GeistMono',
       fontWeight: FontWeight.bold,
     ),
   ),

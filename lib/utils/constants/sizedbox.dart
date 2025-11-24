@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:pozadkey_v3/shared/index.dart';
 
 class MySizedbox {
   static const SizedBox defaultHeight = SizedBox(

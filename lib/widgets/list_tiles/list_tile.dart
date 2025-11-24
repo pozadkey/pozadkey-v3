@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:pozadkey_v3/widgets/icons/icon_img.dart';
-
-
-import '../buttons/dropdown_image/dropdown_image.dart';
-import '../icons/icon_rounded.dart';
+import 'package:pozadkey_v3/shared/index.dart';
 
 class MyListTile extends StatefulWidget {
   final VoidCallback? onTap;
