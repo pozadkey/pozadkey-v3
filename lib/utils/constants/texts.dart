@@ -1,5 +1,4 @@
 class AppText {
-  // Hero section
   static const String heroHeader =
       'I’m Damilare — software & systems engineer.';
   static const String heroDescription =
@@ -8,14 +7,18 @@ class AppText {
       'scaling them from small builds to real-world traffic.\n'
       'I care about code that’s clear, systems that last, and products that feel solid from the inside out.';
 
-  // Project section
   static const String projectHeader = 'Selected Projects';
   static const String web = 'Web';
   static const String app = 'Apps';
   static const String tooling = 'Tooling';
   static const String articles = 'Articles';
 
-  // Contact section
   static const String contactHeader = 'Get in touch';
   static const String contactDescription = 'Always open to good conversations and interesting projects.';
+
+  static const String blogHeader = 'Blog';
+  static const String blogDescription =
+      'Explore articles I\'ve written, sharing my expertise and the lessons learned from my experiences.';
+  static const String blogCTA = 'Read My Articles';
+  static const String resumeCTA = 'Resume';
 }
