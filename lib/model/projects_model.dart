@@ -36,6 +36,12 @@ List<ProjectModel> projectsList = [
   ),
   ProjectModel(
     type: 'tooling',
+    title: 'Globelink',
+    info: 'A fast Go URL shortener with Redis and PostgreSQL.',
+    github: 'https://github.com/pozadkey/globelink',
+  ),
+  ProjectModel(
+    type: 'tooling',
     title: 'Circlelyfe',
     info: 'A RESTful backend service for Circlelyfe, an innovative social media application.',
     live: '',
@@ -48,14 +54,6 @@ List<ProjectModel> projectsList = [
     live: 'http://pub.dev/packages/quick_button',
     github: 'https://github.com/pozadkey/quick_button',
   ),
-  ProjectModel(
-    type: 'tooling',
-    title: 'Graphql-Auth-api',
-    info: 'A GraphQL authentication system designed to seamlessly authenticate users.',
-    live: '',
-    github: 'https://github.com/pozadkey/graphql-auth-api',
-  ),
-
   // ============================================================================
   // APP PROJECTS
   // ============================================================================
@@ -69,7 +67,8 @@ List<ProjectModel> projectsList = [
   ProjectModel(
     type: 'app',
     title: 'Xirapay',
-    info: 'An app for bill payemtnsfor effortless bill payments—airtime, data, electricity, and more.',
+    info:
+        'An app for effortless bill payments—airtime, data, electricity, and more.',
     appstore: 'https://testflight.apple.com/join/75xwx6du',
   ),
   ProjectModel(
