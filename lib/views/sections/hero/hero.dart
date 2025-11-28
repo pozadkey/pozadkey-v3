@@ -47,22 +47,19 @@ class HeroSection extends StatelessWidget {
               const SizedBox(
                 height: 40,
               ),
-            
-                         Row(
-                      children: [
-                        
-                          LinkText(
-                            text: 'Resume',
-                            suffixIcon: AppIcons.arrowRightTop,
-                            textColor: GeneralColors.linkHoverIn,
-                            hoverColor: GeneralColors.linkHoverText,
-                            onPressed: () {
-                              launchURL(AppUri.resume);
-                            },
-                            
-                          ),
-                      ],
-                    )
+              Row(
+                children: [
+                  LinkText(
+                    text: AppText.resumeCTA,
+                    suffixIcon: AppIcons.arrowRightTop,
+                    textColor: GeneralColors.linkHoverIn,
+                    hoverColor: GeneralColors.linkHoverText,
+                    onPressed: () {
+                      launchURL(AppUri.resume);
+                    },
+                  ),
+                ],
+              )
             ],
           )
         ],
